@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // console.log('MONGODB_URI:', MONGODB_URI); // Debugging
 
@@ -10,7 +10,7 @@ if (!MONGODB_URI) {
 	);
 }
 
-export const connectDB = async (): Promise<void> => {
+const connectDB = async () => {
 	try {
 		await mongoose.connect(MONGODB_URI); // Removed outdated options
 		console.log('Db connected successfully');
@@ -19,3 +19,5 @@ export const connectDB = async (): Promise<void> => {
 		process.exit(1);
 	}
 };
+
+module.exports = { connectDB };

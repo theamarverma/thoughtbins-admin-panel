@@ -1,10 +1,9 @@
-import dotenv from 'dotenv';
-dotenv.config(); // Load environment variables from .env file
+require('dotenv').config(); // Load environment variables from .env file
 
-import path from 'path';
-import express, { Request, Response } from 'express';
-import cors from 'cors'; // Import the CORS package
-import { connectDB } from './lib/config/db';
+const path = require('path');
+const express = require('express');
+const cors = require('cors'); // Import the CORS package
+const { connectDB } = require('./lib/config/db');
 
 const app = express();
 
@@ -27,10 +26,7 @@ app.use(
 // API routes
 app.use('/api', require('./routes/api'));
 
-// Connect to the database
-const MONGODB_URI = process.env.MONGODB_URI;
-
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
 	res.send('Hello World');
 });
 
